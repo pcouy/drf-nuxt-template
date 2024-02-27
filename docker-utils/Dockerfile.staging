@@ -1,0 +1,7 @@
+FROM node:lts AS front_stage
+ADD front/ /front_app
+WORKDIR /front_app
+RUN cd /front_app && npm install && npm run generate
+
+FROM nginx:stable
+COPY --from=front_stage /front_app/.output/public /var/www/html/front

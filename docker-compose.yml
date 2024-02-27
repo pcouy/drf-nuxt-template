@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+    nginx:
+        image: nginx:stable
+        ports:
+          - "50080:80"
+        volumes:
+          - ./docker-utils/nginx/templates:/etc/nginx/templates
+          - ./static:/var/www/html/static
+        links:
+          - front
+          - django
+    nginx_staging:
+        build:
+          context: .
+          dockerfile: docker-utils/Dockerfile.staging
+        ports:
+          - "50090:80"
+        volumes:
+          - ./docker-utils/nginx_staging/templates:/etc/nginx/templates
+          - ./static:/var/www/html/static
+        links:
+          - front
+          - django
+    postgres:
+        image: postgres:latest
+        environment:
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: djangoappdb
+        ports:
+          - "55432:5432"
+        volumes:
+          - ./docker-data/pgdata:/var/lib/postgresql/data
+    django:
+        build:
+          context: .
+          dockerfile: docker-utils/Dockerfile
+        ports:
+          - "50081:8000"
+        volumes:
+          - type: bind
+            source: .
+            target: /django_app
+        links:
+          - postgres
+        user: "1000:1000"
+        entrypoint: ["bash", "/django_app/docker-utils/docker-runserver.sh"]
+    front:
+        build:
+          context: .
+          dockerfile: docker-utils/Dockerfile.front
+        ports:
+          - "53000:3000"
+        volumes:
+          - ./front:/front_app
+        entrypoint: ["bash", "/docker-runfront.sh"]

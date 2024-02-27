@@ -1,0 +1,12 @@
+@import "./variables.scss";
+$bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
+
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.scss";
+
+.col > .btn {
+    width: 100%;
+}
+.btn > i {
+    margin: 0 1rem;
+}

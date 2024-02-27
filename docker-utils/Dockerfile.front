@@ -1,0 +1,4 @@
+FROM node:lts
+WORKDIR /front_app
+COPY docker-utils/docker-runfront.sh /
+RUN ls / && ls /front_app

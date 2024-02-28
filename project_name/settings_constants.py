@@ -1,5 +1,5 @@
 """
-This file gathers all settings that need attention when deploying djangoapp to a new host/server.
+This file gathers all settings that need attention when deploying {{ project_name }} to a new host/server.
 All constants in this file are deployment-specific. Some of them are secrets that should not
 be committed to version-control.
 
@@ -10,7 +10,7 @@ These secrets MUST be changed for production deployments.
 Add `# SECURITY WARNING:` comment lines where appropriate
 Use `EDIT-THIS` as a placeholder for anything that should not be commited to version control
 
-See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+See https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 """
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -30,7 +30,7 @@ CSRF_TRUSTED_ORIGINS = [
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "djangoappdb",
+        "NAME": "{{ project_name }}db",
         "USER": "postgres",
         "PASSWORD": "root",
         "HOST": "postgres",
@@ -41,5 +41,5 @@ DATABASES = {
 # SECURITY WARNING: ANYTHING BELOW THIS LINE IS A SECRET. THE VALUE USED IN PRODUCTION SHOULD NOT
 # BE COMITTED TO VERSION CONTROL. THE VALUES FROM VERSION CONTROL ARE PROVIDED FOR CONVENIENCE
 SECRET_KEY = (
-    "EDIT-THIS-django-not-really-a-secret-#k^1hx9um+7-!$tbzu0g9x$6$r@x6(^m(m6-9b)_hq9zn!e9et"
+    "EDIT-THIS-django-not-really-a-secret-{{ secret_key }}"
 )

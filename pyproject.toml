@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "djangoapp"
+name = "{{ project_name }}"
 version = "0.1.0"
 description = ""
 authors = ["pcouy <contact@pierre-couy.dev>"]
@@ -110,7 +110,7 @@ limit-inference-results = 100
 # List of plugins (as comma separated values of python module names) to load,
 # usually to register additional checkers.
 load-plugins = "pylint_django"
-django-settings-module = "djangoapp.settings"
+django-settings-module = "{{ project_name }}.settings"
 
 # Pickle collected data for later comparisons.
 persistent = true

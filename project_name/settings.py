@@ -11,8 +11,12 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 """
 
 from pathlib import Path
+import sys
 
 from .settings_constants import *  # pylint: disable=wildcard-import,unused-wildcard-import
+
+
+RUNNING_DEVSERVER = len(sys.argv) > 1 and sys.argv[1][: len("runserver")] == "runserver"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,8 +30,7 @@ USE_X_FORWARDED_HOST = True
 # Application definition
 
 INSTALLED_APPS = [
-    "debug_toolbar",
-    "django_extensions",
+    *(["debug_toolbar", "django_extensions"] if RUNNING_DEVSERVER else []),
     "corsheaders",
     "rest_framework",
     "django.contrib.admin",
@@ -39,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    *(["debug_toolbar.middleware.DebugToolbarMiddleware"] if RUNNING_DEVSERVER else []),
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

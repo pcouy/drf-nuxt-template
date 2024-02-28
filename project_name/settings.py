@@ -1,4 +1,3 @@
-
 """
 Django settings for {{ project_name }} project.
 
@@ -18,7 +17,7 @@ from .settings_constants import *  # pylint: disable=wildcard-import,unused-wild
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 FORCE_SCRIPT_NAME = "/api"
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 USE_X_FORWARDED_HOST = True
 
 # Quick-start development settings - unsuitable for production

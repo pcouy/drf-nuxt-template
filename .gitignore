@@ -3,5 +3,4 @@
 
 /docker-data/
 
-/static/
 *.log

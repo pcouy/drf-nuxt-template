@@ -54,4 +54,5 @@ services:
           - "53000:3000"
         volumes:
           - ./front:/front_app
+        user: "1000:1000"
         entrypoint: ["bash", "/docker-runfront.sh"]

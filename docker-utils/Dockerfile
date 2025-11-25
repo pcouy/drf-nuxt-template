@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.13-slim
 WORKDIR /django_app
 ENV PATH="${PATH}:/home/djangouser/.local/bin"
 COPY docker-utils/docker-install.sh /

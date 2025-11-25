@@ -31,7 +31,7 @@ services:
         ports:
           - "55432:5432"
         volumes:
-          - ./docker-data/pgdata:/var/lib/postgresql/data
+          - ./docker-data/pgdata:/var/lib/postgresql/
     django:
         build:
           context: .

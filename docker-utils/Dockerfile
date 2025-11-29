@@ -4,6 +4,8 @@ ENV PATH="${PATH}:/home/djangouser/.local/bin"
 COPY docker-utils/docker-install.sh /
 RUN bash /docker-install.sh
 ENV RUNNING_DEVSERVER=1
+ENV POETRY_VIRTUALENVS_IN_PROJECT=true VENV_PATH=/django_app/.venv VIRTUAL_ENV=/django_app/.venv
+ENV PATH="$VENV_PATH/bin:$PATH"
 
 FROM django_dev AS django_staging
 COPY pyproject.toml /django_app

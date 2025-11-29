@@ -12,12 +12,12 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 
 from pathlib import Path
 import sys
+import os
 
 from .settings_constants import *  # pylint: disable=wildcard-import,unused-wildcard-import
 
 
-RUNNING_DEVSERVER = len(sys.argv) > 1 and sys.argv[1][: len("runserver")] == "runserver"
-
+RUNNING_DEVSERVER = os.environ.get("RUNNING_DEVSERVER", False)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 FORCE_SCRIPT_NAME = "/api"

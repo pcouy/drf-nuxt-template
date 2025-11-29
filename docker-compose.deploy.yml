@@ -25,6 +25,7 @@ services:
         build:
           context: .
           dockerfile: docker-utils/Dockerfile
+          target: django_staging
         ports:
           - "50081:8000"
         volumes:
